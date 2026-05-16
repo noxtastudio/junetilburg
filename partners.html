@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Partners &amp; vacatures — June. Tilburg</title>
+<meta name="description" content="Onze partners en open posities bij June.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prata&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/site.css">
+<style>
+  /* Intro band */
+  .intro-band {
+    padding: clamp(5rem, 9vw, 8rem) 2rem clamp(2rem, 5vw, 4rem);
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .intro-band .cat-label { display:inline-block; }
+  .intro-band h1 {
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    margin-bottom: 1.5rem;
+  }
+  .intro-band .lede {
+    font-family: 'Prata', Georgia, serif;
+    font-size: clamp(1.2rem, 2.2vw, 1.65rem);
+    color: var(--text);
+    margin: 0 auto;
+    line-height: 1.55;
+    max-width: 640px;
+  }
+
+  /* Partners list — editorial rows */
+  .partners {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: clamp(2rem, 5vw, 4rem) 2rem clamp(5rem, 10vw, 8rem);
+  }
+  .partner-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem 3rem;
+    padding: clamp(2.5rem, 5vw, 4rem) 0;
+    border-bottom: 1px solid rgba(133, 130, 100, 0.25);
+    align-items: baseline;
+  }
+  @media (min-width: 800px) {
+    .partner-row {
+      grid-template-columns: minmax(60px, 80px) minmax(220px, 1fr) 2.2fr auto;
+      gap: 3rem;
+    }
+  }
+  .partner-row__num {
+    font-family: 'Prata', Georgia, serif;
+    font-style: italic;
+    color: var(--warm);
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+  }
+  .partner-row__name {
+    font-family: 'Prata', Georgia, serif;
+    color: var(--accent);
+    font-size: clamp(1.5rem, 2.8vw, 2rem);
+    line-height: 1.15;
+    letter-spacing: -0.005em;
+  }
+  .partner-row__cat {
+    display: block;
+    margin-top: .4rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    opacity: .65;
+  }
+  .partner-row__desc {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text);
+    margin: 0;
+  }
+  .partner-row__link {
+    font-family: Arial, sans-serif;
+    font-size: .72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--warm);
+    white-space: nowrap;
+    align-self: center;
+  }
+  .partner-row__link:hover { opacity: 1; color: var(--warm-deep); }
+
+  /* Featured partner pair */
+  .featured-partner {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 70vh;
+    background: var(--bg);
+  }
+  @media (min-width: 900px) {
+    .featured-partner { grid-template-columns: 1fr 1fr; }
+  }
+  .featured-partner img { width: 100%; height: 100%; object-fit: cover; min-height: 50vh; }
+  .featured-partner .text {
+    padding: clamp(3rem, 7vw, 6rem) 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .featured-partner .text p.num {
+    font-family: 'Prata', Georgia, serif;
+    font-style: italic;
+    color: var(--warm);
+    margin-bottom: 1rem;
+  }
+  .featured-partner .text h2 {
+    font-size: clamp(2rem, 4.5vw, 3.25rem);
+    margin-bottom: 1.25rem;
+  }
+  .featured-partner .text .lede {
+    font-size: 1.1rem;
+    line-height: 1.75;
+    max-width: 460px;
+  }
+  .featured-partner .text .meta {
+    margin-top: 2rem;
+    font-size: .72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    opacity: .8;
+  }
+
+  /* Vacatures — dark band */
+  .vacatures {
+    background: var(--dark);
+    color: var(--bg);
+    padding: clamp(5rem, 10vw, 8rem) 2rem clamp(2rem, 3vw, 3rem);
+  }
+  .vacatures__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  @media (min-width: 900px) {
+    .vacatures__inner { grid-template-columns: 5fr 7fr; gap: 5rem; }
+  }
+  .vacatures__head .cat-label { color: var(--warm); }
+  .vacatures__head h2 {
+    color: var(--bg);
+    font-size: clamp(2.5rem, 5.5vw, 4rem);
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+  }
+  .vacatures__head p {
+    color: rgba(241, 233, 217, 0.75);
+    font-size: 1.05rem;
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+  .vacatures__head .mail {
+    display: inline-block;
+    margin-top: 1.5rem;
+    color: var(--warm);
+    font-family: 'Prata', Georgia, serif;
+    font-size: 1.25rem;
+    border-bottom: 1px solid var(--warm);
+  }
+  .vacatures__head .mail:hover { color: var(--bg); border-bottom-color: var(--bg); opacity: 1; }
+
+  .vac-list { display: flex; flex-direction: column; gap: 0; }
+  .vac-row {
+    padding: 1.75rem 0;
+    border-top: 1px solid rgba(241, 233, 217, 0.18);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .5rem;
+  }
+  @media (min-width: 600px) {
+    .vac-row { grid-template-columns: 1fr auto; gap: 1.5rem; align-items: baseline; }
+  }
+  .vac-row:last-child { border-bottom: 1px solid rgba(241, 233, 217, 0.18); }
+  .vac-row__title {
+    font-family: 'Prata', Georgia, serif;
+    color: var(--bg);
+    font-size: clamp(1.4rem, 2.5vw, 1.75rem);
+    line-height: 1.2;
+    margin: 0;
+  }
+  .vac-row__meta {
+    font-size: .8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(241, 233, 217, 0.55);
+    white-space: nowrap;
+  }
+  .vac-row__desc {
+    grid-column: 1 / -1;
+    color: rgba(241, 233, 217, 0.7);
+    font-size: .98rem;
+    line-height: 1.7;
+    margin: .25rem 0 0;
+  }
+  .vacatures__cta {
+    margin-top: 3rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(241, 233, 217, 0.18);
+  }
+  .vacatures__cta p {
+    color: rgba(241, 233, 217, 0.65);
+    margin-bottom: 1.5rem;
+    font-size: .95rem;
+  }
+</style>
+</head>
+<body class="has-solid-header">
+
+<div id="site-header-slot"></div>
+
+<main>
+
+  <!-- ================== INTRO ================== -->
+  <section class="intro-band reveal">
+    <p class="cat-label">Onze partners</p>
+    <h1>Wij houden de keten kort.</h1>
+    <p class="lede">
+      Wij geloven in transparantie, lokale samenwerking en eerlijke ketens.
+      Onze koffie, thee, eieren, kaas en limonades komen van mensen die we kennen
+      — vaak letterlijk uit de buurt.
+    </p>
+  </section>
+
+  <!-- ================== FEATURED: GIRAFFE ================== -->
+  <section class="featured-partner reveal">
+    <img src="assets/photos/giraffe-coffee.jpg" alt="Giraffe Coffee Roasters verpakking met koffiebonen">
+    <div class="text">
+      <p class="num"><em>Featured — No. 01</em></p>
+      <h2>Giraffe Coffee Roasters.</h2>
+      <p class="lede">
+        Onze koffie komt van Giraffe Coffee Roasters uit Rotterdam — een branderij
+        met een transparante keten. We schenken hun Latin America blend op de espresso
+        en La Aldea op de filter.
+      </p>
+      <p class="meta">Rotterdam · Specialty koffie</p>
+    </div>
+  </section>
+
+  <!-- ================== PARTNERS LIST ================== -->
+  <section class="partners reveal">
+    <div class="partner-row">
+      <span class="partner-row__num"><em>01</em></span>
+      <div>
+        <div class="partner-row__name">Giraffe Coffee Roasters</div>
+        <span class="partner-row__cat">Koffie · Rotterdam</span>
+      </div>
+      <p class="partner-row__desc">
+        Specialty koffie uit Rotterdam, eerlijk en traceerbaar.
+        Latin America blend (espresso) en La Aldea (filter).
+      </p>
+      <a class="partner-row__link" href="https://giraffecoffee.nl" target="_blank" rel="noopener">Bezoek →</a>
+    </div>
+
+    <div class="partner-row">
+      <span class="partner-row__num"><em>02</em></span>
+      <div>
+        <div class="partner-row__name">Bij de T</div>
+        <span class="partner-row__cat">Thee · Tilburg</span>
+      </div>
+      <p class="partner-row__desc">
+        Biologische thee van onze voormalige overbuurvrouw Selma.
+        Inclusief onze eigen huisblend "June".
+      </p>
+      <span class="partner-row__link">Buurt &amp; bio</span>
+    </div>
+
+    <div class="partner-row">
+      <span class="partner-row__num"><em>03</em></span>
+      <div>
+        <div class="partner-row__name">De Annahoeve</div>
+        <span class="partner-row__cat">Eieren · Brabant</span>
+      </div>
+      <p class="partner-row__desc">
+        Verse scharreleieren, wekelijks geleverd door een lokale boerderij
+        met vrij rondscharrelende kippen.
+      </p>
+      <span class="partner-row__link">Wekelijks vers</span>
+    </div>
+
+    <div class="partner-row">
+      <span class="partner-row__num"><em>04</em></span>
+      <div>
+        <div class="partner-row__name">Duingoed</div>
+        <span class="partner-row__cat">Kaas · Brabant</span>
+      </div>
+      <p class="partner-row__desc">
+        Brabantse Schone — beste Nederlandse kaas 2023. De opbrengst
+        van deze kaas ondersteunt de lokale natuur.
+      </p>
+      <span class="partner-row__link">Bekroond 2023</span>
+    </div>
+
+    <div class="partner-row">
+      <span class="partner-row__num"><em>05</em></span>
+      <div>
+        <div class="partner-row__name">Roze Bunker</div>
+        <span class="partner-row__cat">Limonades</span>
+      </div>
+      <p class="partner-row__desc">
+        Ambachtelijke limonades met een missie:
+        biodiversiteit, minder voedselverspilling, en een kortere keten.
+      </p>
+      <span class="partner-row__link">Missie-gedreven</span>
+    </div>
+
+    <div class="partner-row">
+      <span class="partner-row__num"><em>06</em></span>
+      <div>
+        <div class="partner-row__name">Dem Good Chai</div>
+        <span class="partner-row__cat">Chai</span>
+      </div>
+      <p class="partner-row__desc">
+        Bob's Classic Chai Latte — volledig biologisch, zonder toevoegingen.
+      </p>
+      <span class="partner-row__link">100% bio</span>
+    </div>
+
+    <div class="partner-row">
+      <span class="partner-row__num"><em>07</em></span>
+      <div>
+        <div class="partner-row__name">Marie Stella Maris</div>
+        <span class="partner-row__cat">Water &amp; verzorging</span>
+      </div>
+      <p class="partner-row__desc">
+        Schoon water voor iedereen. Naast het water schenken we ook
+        hun handzeep en geurstokjes — ook in onze winkel verkrijgbaar.
+      </p>
+      <span class="partner-row__link">Schoon water</span>
+    </div>
+  </section>
+
+  <!-- ================== VACATURES ================== -->
+  <section class="vacatures reveal" id="vacatures">
+    <div class="vacatures__inner">
+      <div class="vacatures__head">
+        <p class="cat-label">Vacatures</p>
+        <h2>Werken bij June.</h2>
+        <p>
+          We zijn altijd op zoek naar mensen die ons team komen versterken.
+          Of het nu gaat om de keuken, de bar of de gastvrijheid in de zaak —
+          stuur ons een berichtje als je denkt dat je bij ons past.
+        </p>
+        <p>
+          Solliciteren? Stuur een mailtje met een korte introductie
+          en, als je het hebt, je CV.
+        </p>
+        <a class="mail" href="/cdn-cgi/l/email-protection#7205170019171c3218071c17061b1e100700155c1c1e"><span class="__cf_email__" data-cfemail="a6d1c3d4cdc3c8e6ccd3c8c3d2cfcac4d3d4c188c8ca">[email&#160;protected]</span> →</a>
+      </div>
+
+      <div>
+        <div class="vac-list">
+          <div class="vac-row">
+            <h3 class="vac-row__title">Lunch cook</h3>
+            <span class="vac-row__meta">Keuken · Wo – Zo</span>
+            <p class="vac-row__desc">
+              Voor onze lunch-keuken zoeken we een ervaren kok die mee wil bouwen aan
+              onze brunchkaart. Werken in een klein, hecht team van wo t/m zo.
+            </p>
+          </div>
+          <div class="vac-row">
+            <h3 class="vac-row__title">Keukenhulp</h3>
+            <span class="vac-row__meta">Keuken</span>
+            <p class="vac-row__desc">
+              Ondersteuning in de keuken tijdens onze drukke brunchservice.
+              Ervaring is een pré, motivatie belangrijker.
+            </p>
+          </div>
+          <div class="vac-row">
+            <h3 class="vac-row__title">Afwastalent</h3>
+            <span class="vac-row__meta">Keuken</span>
+            <p class="vac-row__desc">
+              Een onmisbare schakel in de keuken — secuur, snel en met een goed humeur.
+            </p>
+          </div>
+        </div>
+
+        <div class="vacatures__cta">
+          <p>
+            Staat jouw droombaan er niet bij? Stuur ons toch een mail — bij June werken
+            we graag met mensen die zelf het initiatief nemen.
+          </p>
+          <a class="btn" href="/cdn-cgi/l/email-protection#82f5e7f0e9e7ecc2e8f7ece7f6ebeee0f7f0e5acecee">Solliciteer via mail</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="site-footer-slot"></div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="styles/chrome.js"></script>
+<script>JuneChrome.render({ active: 'partners' });</script>
+<script src="styles/site.js"></script>
+</body>
+</html>

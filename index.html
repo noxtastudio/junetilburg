@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>June. — Specialty coffee &amp; brunch, Tilburg</title>
+<meta name="description" content="Hét toevluchtsoord voor liefhebbers van koffie en brunch in het hart van Tilburg.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prata&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/site.css">
+<style>
+  /* ----------- Home: full-screen hero ----------- */
+  .home-hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    width: 100%;
+    overflow: hidden;
+  }
+  .home-hero img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center 55%;
+  }
+  .home-hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg,
+      rgba(42,38,32,0.35) 0%,
+      rgba(42,38,32,0.10) 35%,
+      rgba(42,38,32,0.05) 60%,
+      rgba(42,38,32,0.65) 100%);
+  }
+  .home-hero__content {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 2rem 8vh;
+    color: var(--bg);
+  }
+  .home-hero__eyebrow {
+    font-size: .8rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    opacity: 1;
+    text-shadow: 0 1px 18px rgba(0,0,0,0.75), 0 0 40px rgba(0,0,0,0.5);
+  }
+  .home-hero__title {
+    margin: -4vw 0 -5vw;
+    line-height: 1;
+  }
+  .home-hero__title img {
+    display: block;
+    width: clamp(180px, 30vw, 460px);
+    height: auto;
+    filter: brightness(0) invert(1);
+  }
+  .home-hero__sub {
+    margin-top: 0;
+    font-family: 'Prata', Georgia, serif;
+    font-size: clamp(1.1rem, 2vw, 1.6rem);
+    color: var(--bg);
+    opacity: 1;
+    letter-spacing: 0.01em;
+    text-shadow: 0 1px 18px rgba(0,0,0,0.75), 0 0 40px rgba(0,0,0,0.5);
+  }
+  .home-hero__meta {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 3;
+    font-size: .68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--bg);
+    opacity: 1;
+    text-align: right;
+    line-height: 1.7;
+    text-shadow: 0 1px 10px rgba(0,0,0,0.5);
+  }
+  .scroll-cue {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    font-size: .68rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--bg);
+    opacity: .9;
+    display: none;
+    text-shadow: 0 1px 10px rgba(0,0,0,0.5);
+  }
+  @media (min-width: 880px) {
+    .scroll-cue { display: block; }
+    .home-hero__content { padding-bottom: 12vh; }
+  }
+  @media (max-width: 600px) {
+    .home-hero__meta { display: none; }
+  }
+
+  /* ----------- Welkom (intro / over ons) ----------- */
+  .welkom {
+    padding: clamp(6rem, 12vw, 10rem) 2rem clamp(3rem, 6vw, 5rem);
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .welkom .quote {
+    font-family: 'Prata', Georgia, serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+    color: var(--accent);
+    line-height: 1.35;
+    margin: 0 0 2rem;
+    letter-spacing: -0.005em;
+  }
+  .welkom .quote em { font-style: italic; color: var(--warm); }
+  .welkom .signature {
+    font-size: .72rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--warm);
+  }
+
+  /* ----------- Over ons — two stacked editorial blocks ----------- */
+  .over {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    align-items: stretch;
+    background: var(--bg);
+  }
+  @media (min-width: 900px) {
+    .over { grid-template-columns: 5fr 7fr; min-height: 80vh; }
+    .over--reverse > div:first-child { order: 2; }
+  }
+  .over__image { position: relative; overflow: hidden; min-height: 60vh; }
+  .over__image img { width: 100%; height: 100%; object-fit: cover; }
+  .over__text {
+    padding: clamp(3rem, 7vw, 6rem) 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 640px;
+  }
+  .over__text .num {
+    font-family: 'Prata', Georgia, serif;
+    font-style: italic;
+    color: var(--warm);
+    font-size: .95rem;
+    margin-bottom: 1rem;
+  }
+  .over__text h2 {
+    font-size: clamp(2rem, 4.5vw, 3.25rem);
+    margin-bottom: 1.5rem;
+  }
+  .over__text p {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    max-width: 500px;
+  }
+
+  /* ----------- Gallery ----------- */
+  .gallery-section {
+    padding: clamp(5rem, 10vw, 8rem) 0 clamp(4rem, 8vw, 6rem);
+  }
+  .gallery-section__head {
+    max-width: 900px;
+    margin: 0 auto clamp(3rem, 6vw, 5rem);
+    padding: 0 2rem;
+    text-align: center;
+  }
+  .gallery-section__head .cat-label { display: inline-block; }
+  .gallery-section__head h2 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem; }
+  .gallery-section__head p { color: var(--text); max-width: 540px; margin: 0 auto; }
+
+  .gallery-grid {
+    display: grid;
+    grid-auto-flow: dense;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+    padding: 0 4px;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+  @media (min-width: 700px) {
+    .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; padding: 0 6px; }
+  }
+  @media (min-width: 1100px) {
+    .gallery-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+  .g-cell { position: relative; overflow: hidden; aspect-ratio: 1 / 1; background: var(--cream); }
+  .g-cell img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform .9s ease;
+  }
+  .g-cell:hover img { transform: scale(1.04); }
+  /* Span variants for visual rhythm */
+  .g-cell.tall { aspect-ratio: 1 / 1.4; }
+  .g-cell.wide { aspect-ratio: 1.4 / 1; }
+  @media (min-width: 700px) {
+    .g-cell.tall { grid-row: span 2; aspect-ratio: auto; }
+    .g-cell.wide { grid-column: span 2; aspect-ratio: auto; }
+  }
+
+  /* ----------- Quote / pull ----------- */
+  .pull-quote {
+    padding: clamp(6rem, 12vw, 9rem) 2rem;
+    text-align: center;
+    background: var(--bg);
+  }
+  .pull-quote blockquote {
+    max-width: 880px;
+    margin: 0 auto;
+    font-family: 'Prata', Georgia, serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    color: var(--accent);
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+  }
+  .pull-quote cite {
+    display: block;
+    margin-top: 2rem;
+    font-style: normal;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .72rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--warm);
+  }
+
+  /* ----------- Bezoek (visit) info strip ----------- */
+  .bezoek {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  @media (min-width: 900px) {
+    .bezoek { grid-template-columns: 1fr 1fr; min-height: 70vh; }
+  }
+  .bezoek__image { min-height: 50vh; position: relative; }
+  .bezoek__image img { width: 100%; height: 100%; object-fit: cover; }
+  .bezoek__info {
+    background: var(--dark);
+    color: var(--bg);
+    padding: clamp(3rem, 7vw, 6rem) 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .bezoek__info .cat-label { color: var(--warm); }
+  .bezoek__info h2 { color: var(--bg); font-size: clamp(2rem, 4.5vw, 3rem); margin-bottom: 2.5rem; }
+  .bezoek__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 540px;
+  }
+  @media (min-width: 600px) {
+    .bezoek__grid { grid-template-columns: 1fr 1fr; gap: 2.5rem 3rem; }
+  }
+  .bezoek__grid h4 {
+    color: var(--warm);
+    font-family: Arial, sans-serif;
+    font-size: .72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: .75rem;
+  }
+  .bezoek__grid p {
+    color: rgba(241, 233, 217, 0.85);
+    font-size: 1rem;
+    margin: 0;
+    line-height: 1.7;
+  }
+  .bezoek__grid p a { color: var(--bg); border-bottom: 1px solid rgba(241,233,217,0.4); }
+  .bezoek__grid p a:hover { color: var(--warm); border-bottom-color: var(--warm); }
+
+  /* ----------- Menu tease ----------- */
+  .menu-tease {
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--bg);
+    overflow: hidden;
+    padding: clamp(5rem, 10vw, 8rem) 2rem;
+  }
+  .menu-tease__bg {
+    position: absolute; inset: 0;
+    z-index: 0;
+  }
+  .menu-tease__bg img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .menu-tease::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(42,38,32,0.4) 0%, rgba(42,38,32,0.7) 100%);
+    z-index: 1;
+  }
+  .menu-tease__content {
+    position: relative; z-index: 2;
+    max-width: 700px;
+  }
+  .menu-tease__eyebrow {
+    font-size: .72rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--warm);
+    margin-bottom: 1.5rem;
+  }
+  .menu-tease h2 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    color: var(--bg);
+    margin-bottom: 1.5rem;
+    line-height: 1.05;
+  }
+  .menu-tease p {
+    color: rgba(241, 233, 217, 0.85);
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+  }
+</style>
+</head>
+<body>
+
+<div id="site-header-slot"></div>
+
+<main>
+
+  <!-- ================== HERO ================== -->
+  <section class="home-hero">
+    <img src="assets/photos/exterior-window.jpg" alt="Het raam van June met de tekst 'June. Specialty coffee & brunch'">
+    <div class="home-hero__content">
+      <p class="home-hero__eyebrow">Tilburg · Dwaalgebied</p>
+      <h1 class="home-hero__title"><img src="assets/logo/june_logo_transparent.png" alt="June."></h1>
+      <p class="home-hero__sub">Specialty coffee &amp; brunch</p>
+    </div>
+    <div class="home-hero__meta">
+      Wo – Za · 09:00 – 16:30<br>
+      Zo · 10:00 – 16:30
+    </div>
+    <div class="scroll-cue">Scroll</div>
+  </section>
+
+  <!-- ================== WELKOM ================== -->
+  <section class="welkom reveal">
+    <p class="signature">— Welkom bij June —</p>
+    <p class="quote" style="margin-top:2rem;">
+      Hét <em>toevluchtsoord</em> voor liefhebbers van koffie en brunch in het hart van Tilburg.
+    </p>
+  </section>
+
+  <!-- ================== OVER ONS 1 ================== -->
+  <section class="over reveal">
+    <div class="over__image">
+      <img src="assets/photos/team-anniversary.jpg" alt="Het team van June viert het eerste jaar">
+    </div>
+    <div class="over__text">
+      <p class="num"><em>Ons verhaal — No. 01</em></p>
+      <h2>Geboren uit een gedeelde droom.</h2>
+      <p>
+        Geboren uit een gedeelde droom van twee liefhebbers van koffie, lekker eten
+        en gastvrijheid, openden we June met één doel voor ogen: een sfeervolle
+        plek creëren waar mensen samen kunnen komen om te genieten.
+      </p>
+      <p style="margin-top:1.5rem;">
+        Bij June draait alles om <em style="color:var(--warm); font-family:'Prata',serif; font-style:italic;">kwaliteit en aandacht</em>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================== OVER ONS 2 ================== -->
+  <section class="over over--reverse reveal">
+    <div class="over__image">
+      <img src="assets/photos/interior-plant.jpg" alt="Interieur met plant en schaduw van de June. typografie">
+    </div>
+    <div class="over__text" style="margin-left:auto;">
+      <p class="num"><em>Ons verhaal — No. 02</em></p>
+      <h2>In het knusse Dwaalgebied.</h2>
+      <p>
+        Je vindt June in het knusse Dwaalgebied van Tilburg. Onze gezellige en
+        uitnodigende ruimte is ontworpen om je te omarmen zodra je binnenstapt.
+      </p>
+      <p style="margin-top:1.5rem;">
+        Of je nu alleen komt voor een kopje koffie of met vrienden en familie
+        bent voor een uitgebreide brunch — June is de perfecte plek om te
+        ontspannen en te genieten.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================== GALLERY ================== -->
+  <section class="gallery-section reveal">
+    <div class="gallery-section__head">
+      <p class="cat-label">Sfeer · Koffie · Brunch</p>
+      <h2>Een kijkje binnen.</h2>
+      <p>Een momentopname van wat er bij ons op tafel komt, en van het licht dat door het raam valt.</p>
+    </div>
+    <div class="gallery-grid">
+      <a class="g-cell" href="menu.html"><img src="assets/photos/pancakes.jpg" alt="Pancakes met framboos en pistache"></a>
+      <a class="g-cell" href="menu.html"><img src="assets/photos/coffees-marble.jpg" alt="Twee koffies met latte art op marmer"></a>
+      <a class="g-cell" href="menu.html"><img src="assets/photos/brunch-sesame.jpg" alt="Brunch met zwarte sesam"></a>
+      <a class="g-cell" href="menu.html"><img src="assets/photos/acai-bowl.jpg" alt="Acaí bowl"></a>
+      <a class="g-cell" href="menu.html"><img src="assets/photos/coffee-shadow.jpg" alt="Koffie op marmer met sterke schaduw"></a>
+      <a class="g-cell" href="menu.html"><img src="assets/photos/fresh-meal.jpg" alt="Vers gerecht met natuurlijk licht"></a>
+      <a class="g-cell" href="menu.html"><img src="assets/photos/cucumber-cheese.jpg" alt="Gerecht met komkommer, kaas en pistache"></a>
+      <a class="g-cell" href="menu.html"><img src="assets/photos/latte-art-marble.jpg" alt="Latte art op marmer"></a>
+      <a class="g-cell" href="menu.html"><img src="assets/photos/breakfast-bowl.jpg" alt="Ontbijt bowl"></a>
+      <a class="g-cell" href="menu.html"><img src="assets/photos/crumble-dessert.jpg" alt="Crumble dessert"></a>
+      <a class="g-cell" href="menu.html"><img src="assets/photos/croissant-icecream.jpg" alt="Croissant met ijs en hazelnoot"></a>
+      <a class="g-cell" href="menu.html"><img src="assets/photos/colorful-plate.jpg" alt="Kleurrijk gerecht"></a>
+    </div>
+  </section>
+
+  <!-- ================== PULL QUOTE ================== -->
+  <section class="pull-quote reveal">
+    <blockquote>
+      “Een sfeervolle plek creëren waar mensen samen kunnen komen om te genieten.”
+    </blockquote>
+    <cite>— Onze missie</cite>
+  </section>
+
+  <!-- ================== MENU TEASE ================== -->
+  <a href="menu.html" style="text-decoration:none; color:inherit; display:block;">
+  <section class="menu-tease">
+    <div class="menu-tease__bg">
+      <img src="assets/photos/brunch-fresh.jpg" alt="Brunch bij June">
+    </div>
+    <div class="menu-tease__content">
+      <p class="menu-tease__eyebrow">Voorjaar 2026</p>
+      <h2>De volledige kaart.</h2>
+      <p>All day brunch, vers gebakken, met koffie van Giraffe Roasters en thee van Bij de T.</p>
+      <span class="btn">Bekijk de menukaart</span>
+    </div>
+  </section>
+  </a>
+
+  <!-- ================== BEZOEK ================== -->
+  <section class="bezoek reveal">
+    <div class="bezoek__image">
+      <img src="assets/photos/exterior-winter.jpg" alt="Buitenkant van June">
+    </div>
+    <div class="bezoek__info">
+      <p class="cat-label">Praktisch</p>
+      <h2>Kom langs.</h2>
+      <div class="bezoek__grid">
+        <div>
+          <h4>Adres</h4>
+          <p>Nieuwlandstraat 16<br>5038 SN Tilburg</p>
+        </div>
+        <div>
+          <h4>Openingstijden</h4>
+          <p>Wo – Za · 09:00 – 16:30<br>Zo · 10:00 – 16:30<br>Ma &amp; di gesloten</p>
+        </div>
+        <div>
+          <h4>Bellen</h4>
+          <p><a href="tel:+31138895139">+31 13 889 51 39</a></p>
+        </div>
+        <div>
+          <h4>Mail</h4>
+          <p><a href="/cdn-cgi/l/email-protection#1a73747c755a706f747f6e7376786f687d347476"><span class="__cf_email__" data-cfemail="6f060109002f051a010a1b06030d1a1d08410103">[email&#160;protected]</span></a></p>
+        </div>
+      </div>
+      <p style="margin-top:2.5rem; color: rgba(241,233,217,0.65); font-size:.95rem; max-width:480px;">
+        Reserveren is mogelijk. Op zaterdag en zondag enkel reserveringen vanaf 6 personen.
+      </p>
+      <div style="margin-top:2rem;">
+        <a class="btn btn--ghost-light" href="contact.html">Contact &amp; reserveren</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="site-footer-slot"></div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="styles/chrome.js"></script>
+<script>JuneChrome.render({ active: 'home' });</script>
+<script src="styles/site.js"></script>
+</body>
+</html>
