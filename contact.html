@@ -377,8 +377,10 @@
   var header = document.querySelector('.site-header');
   if (!banner || !header) return;
   function offset() {
-    var h = banner.offsetHeight;
-    header.style.top = h + 'px';
+    var bh = banner.offsetHeight;
+    var hh = header.offsetHeight;
+    header.style.top = bh + 'px';
+    document.body.style.paddingTop = (bh + hh) + 'px';
   }
   offset();
   window.addEventListener('resize', offset);
