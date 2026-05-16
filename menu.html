@@ -86,14 +86,13 @@
     .noxta-banner-inner { gap: 8px; }
     .noxta-banner-text { text-align: center; }
   }
-  /* Banner + header stacking — no JS flash */
-  .noxta-banner { position: sticky; top: 0; z-index: 999; }
   .site-header { top: 44px !important; }
   .has-solid-header { padding-top: calc(44px + 88px) !important; }
   @media (min-width: 880px) {
     .site-header { top: 44px !important; }
     .has-solid-header { padding-top: calc(44px + 96px) !important; }
   }
+  .has-solid-header { padding-top: 0 !important; }
 </style>
 </head>
 <body class="has-solid-header">
@@ -190,17 +189,16 @@
 
 <script>
 (function() {
-  // Fine-tune with exact measured heights after load
   var banner = document.querySelector('.noxta-banner');
   var header = document.querySelector('.site-header');
   if (!banner || !header) return;
   function offset() {
-    var bh = banner.offsetHeight;
-    var hh = header.offsetHeight;
-    header.style.top = bh + 'px';
-    document.body.style.paddingTop = (bh + hh) + 'px';
+    var h = banner.offsetHeight;
+    header.style.top = h + 'px';
+    document.body.style.paddingTop = (h + header.offsetHeight) + 'px';
   }
-  offset();
+  // Run immediately (synchronously before paint)
+  document.addEventListener('DOMContentLoaded', offset);
   window.addEventListener('resize', offset);
 })();
 </script>
