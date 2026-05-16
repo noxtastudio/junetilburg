@@ -330,9 +330,73 @@
     font-size: 1.1rem;
     margin-bottom: 2.5rem;
   }
+  /* ============ NOXTA CONCEPT BANNER ============ */
+  .noxta-banner {
+    background: linear-gradient(90deg, #7ce0ff 0%, #b08cff 50%, #ff8cc5 100%);
+    color: #05060e;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.85rem;
+    padding: 10px 0;
+    box-shadow: 0 2px 12px rgba(0,0,0,.08);
+  }
+  .noxta-banner-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .noxta-banner-tag {
+    background: #05060e;
+    color: #7ce0ff;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+  .noxta-banner-text {
+    color: #05060e;
+    line-height: 1.5;
+    font-weight: 500;
+  }
+  .noxta-banner-text strong { font-weight: 700; }
+  .noxta-banner-link {
+    background: #05060e;
+    color: #7ce0ff !important;
+    font-weight: 600;
+    font-size: 0.78rem;
+    padding: 6px 14px;
+    border-radius: 3px;
+    text-decoration: none;
+    flex-shrink: 0;
+    transition: background .15s ease;
+  }
+  .noxta-banner-link:hover { background: #1a1a1a; }
+  @media (max-width: 720px) {
+    .noxta-banner { font-size: 0.78rem; }
+    .noxta-banner-inner { gap: 8px; }
+    .noxta-banner-text { text-align: center; }
+  }
+  /* Banner pushes fixed header down */
+  .has-solid-header { padding-top: calc(88px + 44px) !important; }
+  @media (min-width: 880px) { .has-solid-header { padding-top: calc(96px + 44px) !important; } }
 </style>
 </head>
 <body>
+<!-- ============ NOXTA CONCEPT BANNER ============ -->
+<div class="noxta-banner">
+  <div class="noxta-banner-inner">
+    <span class="noxta-banner-tag">Concept demo</span>
+    <span class="noxta-banner-text">Redesign concept by <strong>Noxta Studio</strong>. Not the live June. Tilburg website. Internal links in this demo are non-functional.</span>
+    <a href="https://noxta.studio" class="noxta-banner-link" target="_blank" rel="noopener">noxta.studio ↗</a>
+  </div>
+</div>
 
 <div id="site-header-slot"></div>
 
