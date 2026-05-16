@@ -337,6 +337,9 @@
     font-family: 'Inter', system-ui, sans-serif;
     font-size: 0.85rem;
     padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 999;
     box-shadow: 0 2px 12px rgba(0,0,0,.08);
   }
   .noxta-banner-inner {
@@ -383,9 +386,6 @@
     .noxta-banner-inner { gap: 8px; }
     .noxta-banner-text { text-align: center; }
   }
-  /* Banner pushes fixed header down */
-  .has-solid-header { padding-top: calc(88px + 44px) !important; }
-  @media (min-width: 880px) { .has-solid-header { padding-top: calc(96px + 44px) !important; } }
 </style>
 </head>
 <body>
@@ -550,5 +550,19 @@
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="styles/chrome.js"></script>
 <script>JuneChrome.render({ active: 'home' });</script>
 <script src="styles/site.js"></script>
+
+<script>
+(function() {
+  var banner = document.querySelector('.noxta-banner');
+  var header = document.querySelector('.site-header');
+  if (!banner || !header) return;
+  function offset() {
+    var h = banner.offsetHeight;
+    header.style.top = h + 'px';
+  }
+  offset();
+  window.addEventListener('resize', offset);
+})();
+</script>
 </body>
 </html>
